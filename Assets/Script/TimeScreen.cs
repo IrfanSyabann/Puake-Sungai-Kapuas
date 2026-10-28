@@ -6,6 +6,7 @@ public class TimeScreen : MonoBehaviour
 {
     // ** NOTE ** //
     // startTime = 5;
+    // activeTimer = true;
     public static TimeScreen instance;
     [HideInInspector]
     [Header("Script")]
@@ -86,17 +87,15 @@ public class TimeScreen : MonoBehaviour
 
                 yield return new WaitForSeconds(timeDelayScene);
 
-                Dialog.activeDialog = true;
-
-                textAnimation.AnimationTextDelay(textAnimation.delay, false);
-
                 this.timeDelayScene = 0;
+
+                isDelayScene = true;
             }
             color.a -= speedFadeInOut;
 
             fadeInOutTrans.color = color;
 
-            if (color.a >= 0f && color.a <= 0.1f)
+            if (color.a >= 0f && color.a <= 0.01f)
             {
                 activeTimer = false;
                 activeFadeInOut = false;

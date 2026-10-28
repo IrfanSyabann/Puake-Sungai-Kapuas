@@ -1,11 +1,12 @@
+using PathCreation.Examples;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     public static Movement instance;
-    [HideInInspector]
     [Header("Script")]
+    [SerializeField] public PathFollower pathFollower;
     CameraControll cameraControll;
     TimeScreen timeScreen;
     TextAnimation textAnimation;

@@ -17,17 +17,17 @@ public class Dialog
         // "<i>Telephone nenek memanggil…</i>",
         // "Sasa : “Lohh…kenapa telephone nenek memanggil yaa?(Sasa dengan ekspresi bingung).”",
         // "Sasa : “Oh..mungkin handphone nenek lagi gak ada paket/mati kali yaa..",
-        // "Sasa : yaudahlah aku kasi surprise aja dengan kedatanganku.”",
-        // null,
-        // "<i>Suara bus berhenti, pertanda Sasa sudah tiba di kampung halaman.</i>",
-        // "break",
-        // "<i>pemandangan area kampung halaman Sasa(Kota Pontianak).</i>",
-        // "Sasa : “Emmahh…(Suara lega setelah lama perjalanan),akhirnya sampai juga setelah 8 jam perjalanan.”",
-        // "<i>Sasa melihat lingkungan sekitar</i>",
-        // "Sasa : “Hah…suasana di sini ternyata masih sama , tidak terlalu banyak yang berubah.”",
-        // "Sasa : “tapi justru itu yang membuat aku rindu dengan kampung halamanku.”",
-        // "Sasa : “baiklah sebaiknya aku langsung ke rumah kakek dan nenek saja.”",
-        // "gameplay",
+        "Sasa : yaudahlah aku kasi surprise aja dengan kedatanganku.”",
+        null,
+        "<i>Suara bus berhenti, pertanda Sasa sudah tiba di kampung halaman.</i>",
+        "break",
+        "<i>pemandangan area kampung halaman Sasa(Kota Pontianak).</i>",
+        "Sasa : “Emmahh…(Suara lega setelah lama perjalanan),akhirnya sampai juga setelah 8 jam perjalanan.”",
+        "<i>Sasa melihat lingkungan sekitar</i>",
+        "Sasa : “Hah…suasana di sini ternyata masih sama , tidak terlalu banyak yang berubah.”",
+        "Sasa : “tapi justru itu yang membuat aku rindu dengan kampung halamanku.”",
+        "Sasa : “baiklah sebaiknya aku langsung ke rumah kakek dan nenek saja.”",
+        "gameplay",
         "<i>Sepertinya ada bendera kuning didepan rumah kakek dan nenek</i>",
         "next",
         "<i>Jangan jangan...</i>",
@@ -42,7 +42,7 @@ public class Dialog
         "<i>Layar Gelap perlahan namun suara tangisan orang sekitar dan bacaan yasin masih terdengar.</i>",
         "next",
         "Muncul Tulisan Judul Game “Misteri Sungai Kapuas.”",
-        ""
+        "break"
     };
 
 }

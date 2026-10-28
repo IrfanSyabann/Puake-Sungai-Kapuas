@@ -31,6 +31,8 @@ public class CameraControll : MonoBehaviour
     {
         if (isChangeCam)
         {
+            mainCamera.gameObject.SetActive(false);
+
             if (indexCamera < cameraList.Length)
             {
                 cameraList[indexCamera].gameObject.SetActive(false);
@@ -43,6 +45,18 @@ public class CameraControll : MonoBehaviour
                 }
 
                 cameraList[indexCamera].gameObject.SetActive(true);
+
+                // === DEBUG CODE === //
+                // if (indexCamera == 3)
+                // {
+                //     cameraList[indexCamera].gameObject.SetActive(false);
+                //     mainCamera.gameObject.SetActive(true);
+                // }
+                // else
+                // {
+                //     indexCamera = 3;
+                //     cameraList[indexCamera].gameObject.SetActive(true);
+                // }
 
                 Dialog.activeDialog = true;
 

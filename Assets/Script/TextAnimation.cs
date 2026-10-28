@@ -1,4 +1,5 @@
 using System.Collections;
+using PathCreation.Examples;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -49,14 +50,29 @@ public class TextAnimation : MonoBehaviour
 
             if (textDialog == null)
             {
-                timeScreen.isCanClick = false;
-                timeScreen.isDelayScene = true;
-                timeScreen.timeDelayScene = 2.5f;
-                movement.isPlayerPlay = false;
+                if (Dialog.textDialog[Dialog.dialogPage] != "next")
+                {
+                    timeScreen.isDelayScene = true;
+                    timeScreen.timeDelayScene = 5f;
+                }
+                else if (Dialog.textDialog[Dialog.dialogPage += 1] == "next")
+                {
+                    timeScreen.isCanClick = false;
+                    timeScreen.isDelayScene = true;
+                    timeScreen.timeDelayScene = 2.5f;
+                    movement.isPlayerPlay = false;
 
-                Dialog.activeDialog = false;
+                    Dialog.activeDialog = false;
 
-                Dialog.dialogPage++;
+                    yield return new WaitForSeconds(2f);
+
+                    Dialog.activeDialog = true;
+                }
+                else
+                {
+                    timeScreen.isDelayScene = true;
+                    timeScreen.timeDelayScene = 12f;
+                }
             }
             else if (textDialog == "break")
             {
@@ -86,7 +102,8 @@ public class TextAnimation : MonoBehaviour
             else if (textDialog == "next")
             {
                 yield return new WaitForSeconds(1.5f);
-                StartCoroutine(AutoCaption(isGameplay, movement.isPlayerPlay));
+                movement.pathFollower.enabled = true;
+                yield return new WaitForSeconds(2.5f);
             }
             else
             {
@@ -110,9 +127,13 @@ public class TextAnimation : MonoBehaviour
                 yield return new WaitForSeconds(2f);
             }
 
-            if (textDialog != null)
+            if (textDialog != null && (textDialog == "next" || textDialog == "break"))
             {
                 StartCoroutine(AutoCaption(isGameplay, movement.isPlayerPlay));
+            }
+            else
+            {
+                Dialog.dialogPage++;
             }
         }
     }
@@ -121,31 +142,76 @@ public class TextAnimation : MonoBehaviour
     {
         if (!isGameplay && !isPlayerPlay)
         {
-            while (Dialog.textDialog[Dialog.dialogPage] == "next")
+            if (Dialog.textDialog[Dialog.dialogPage] == "next")
             {
-                words = null;
-                textDialog = Dialog.textDialog[Dialog.dialogPage += 1];
-
-                timeScreen.isCanClick = false;
-
-                foreach (char t in textDialog)
+                while (Dialog.textDialog[Dialog.dialogPage] == "next")
                 {
-                    words += t;
+                    words = null;
+                    textDialog = Dialog.textDialog[Dialog.dialogPage += 1];
 
-                    tmp_text.text = words;
+                    timeScreen.isCanClick = false;
 
-                    yield return new WaitForSeconds(delay);
+                    foreach (char t in textDialog)
+                    {
+                        words += t;
+
+                        tmp_text.text = words;
+
+                        yield return new WaitForSeconds(delay);
+                    }
+
+                    if (Dialog.textDialog[Dialog.dialogPage += 1] == "next")
+                    {
+                        yield return new WaitForSeconds(2f);
+                    }
+                    else
+                    {
+                        if (Dialog.textDialog[Dialog.dialogPage] == null)
+                        {
+                            StartCoroutine(AnimationTextDelay(delay, false));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
+            }
+            else if (Dialog.textDialog[Dialog.dialogPage += 1] == "next")
+            {
+                yield return new WaitForSeconds(2f);
 
-                Debug.Log(Dialog.textDialog[Dialog.dialogPage]);
+                while (Dialog.textDialog[Dialog.dialogPage] == "next")
+                {
+                    words = null;
+                    textDialog = Dialog.textDialog[Dialog.dialogPage += 1];
 
-                if (Dialog.textDialog[Dialog.dialogPage += 1] == "next")
-                {
-                    yield return new WaitForSeconds(2f);
-                }
-                else
-                {
-                    break;
+                    timeScreen.isCanClick = false;
+
+                    foreach (char t in textDialog)
+                    {
+                        words += t;
+
+                        tmp_text.text = words;
+
+                        yield return new WaitForSeconds(delay);
+                    }
+
+                    if (Dialog.textDialog[Dialog.dialogPage += 1] == "next")
+                    {
+                        yield return new WaitForSeconds(2f);
+                    }
+                    else
+                    {
+                        if (Dialog.textDialog[Dialog.dialogPage] == null)
+                        {
+                            StartCoroutine(AnimationTextDelay(delay, false));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
             }
         }
